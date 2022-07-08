@@ -21,9 +21,20 @@ public class Jugador {
     public void mostrar(JPanel pnl) {
         //limpiar el panel
         pnl.removeAll();
+        
+        int f=0;
+        int c=0;
+        
         //mostrar cada carta
         for (int i = 0; i < TOTAL_CARTAS; i++) {
-            cartas[i].mostrar(10 + i * 50, 10, pnl);
+            //cartas[i].mostrar(10 + i * 50, 10, pnl);
+            cartas[i].mostrar(10 + c * 50, 10+f*80, pnl);
+            
+            c++;
+            if(c>=10){
+                c=0;
+                f++;
+            }
         }
         //refrescar el objeto de despliegue
         pnl.repaint();

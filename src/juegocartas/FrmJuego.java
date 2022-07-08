@@ -21,6 +21,10 @@ public class FrmJuego extends javax.swing.JFrame {
         spJugador1.setDividerSize(0);
         spJugador1.getLeftComponent().setVisible(true);
         spJugador1.getRightComponent().setVisible(false);
+
+        spJugador2.setDividerSize(0);
+        spJugador2.getLeftComponent().setVisible(true);
+        spJugador2.getRightComponent().setVisible(false);
     }
 
     /**
@@ -44,6 +48,10 @@ public class FrmJuego extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCartasJugador1 = new javax.swing.JTable();
         pnlJugador2 = new javax.swing.JPanel();
+        spJugador2 = new javax.swing.JSplitPane();
+        pnlCartasJugador2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblCartasJugador2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +90,7 @@ public class FrmJuego extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(chkMostrar)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +116,7 @@ public class FrmJuego extends javax.swing.JFrame {
         );
         pnlCartasJugador1Layout.setVerticalGroup(
             pnlCartasJugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGap(0, 249, Short.MAX_VALUE)
         );
 
         spJugador1.setLeftComponent(pnlCartasJugador1);
@@ -132,26 +140,58 @@ public class FrmJuego extends javax.swing.JFrame {
         pnlJugador1.setLayout(pnlJugador1Layout);
         pnlJugador1Layout.setHorizontalGroup(
             pnlJugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addComponent(spJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
         );
         pnlJugador1Layout.setVerticalGroup(
             pnlJugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+            .addComponent(spJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
         );
 
         tpJugadores.addTab("Martín Estrada Contreras", pnlJugador1);
 
         pnlJugador2.setBackground(new java.awt.Color(51, 255, 153));
 
+        spJugador2.setDividerLocation(300);
+
+        pnlCartasJugador2.setBackground(new java.awt.Color(102, 255, 153));
+
+        javax.swing.GroupLayout pnlCartasJugador2Layout = new javax.swing.GroupLayout(pnlCartasJugador2);
+        pnlCartasJugador2.setLayout(pnlCartasJugador2Layout);
+        pnlCartasJugador2Layout.setHorizontalGroup(
+            pnlCartasJugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlCartasJugador2Layout.setVerticalGroup(
+            pnlCartasJugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 249, Short.MAX_VALUE)
+        );
+
+        spJugador2.setLeftComponent(pnlCartasJugador2);
+
+        tblCartasJugador2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblCartasJugador2);
+
+        spJugador2.setRightComponent(jScrollPane2);
+
         javax.swing.GroupLayout pnlJugador2Layout = new javax.swing.GroupLayout(pnlJugador2);
         pnlJugador2.setLayout(pnlJugador2Layout);
         pnlJugador2Layout.setHorizontalGroup(
             pnlJugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addComponent(spJugador2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
         );
         pnlJugador2Layout.setVerticalGroup(
             pnlJugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
+            .addComponent(spJugador2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
         );
 
         tpJugadores.addTab("Raúl Vidal", pnlJugador2);
@@ -191,7 +231,15 @@ public class FrmJuego extends javax.swing.JFrame {
             case 1:
                 //Raul Vidal
                 j2.repartir();
-                j2.mostrar(pnlJugador2);
+
+                spJugador2.getLeftComponent().setVisible(!chkMostrar.isSelected());
+                spJugador2.getRightComponent().setVisible(chkMostrar.isSelected());
+                if (!chkMostrar.isSelected()) {
+                    j2.mostrar(pnlCartasJugador2);
+                }
+                else{
+                    j2.mostrar(tblCartasJugador2);
+                }
                 break;
         }
     }//GEN-LAST:event_btnRepartirActionPerformed
@@ -252,12 +300,16 @@ public class FrmJuego extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkMostrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel pnlCartasJugador1;
+    private javax.swing.JPanel pnlCartasJugador2;
     private javax.swing.JPanel pnlJugador1;
     private javax.swing.JPanel pnlJugador2;
     private javax.swing.JSplitPane spJugador1;
+    private javax.swing.JSplitPane spJugador2;
     private javax.swing.JTable tblCartasJugador1;
+    private javax.swing.JTable tblCartasJugador2;
     private javax.swing.JTabbedPane tpJugadores;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,7 +26,6 @@ public class Carta {
         lblCarta.setBounds(x, y, imgCarta.getIconWidth(), imgCarta.getIconHeight());
         //Agregar el objeto de despliegue al contendedor de despliegue
         pnl.add(lblCarta);
-
     }
     
     public ImageIcon[] mostrar(int columna, ImageIcon[] imagenes){
